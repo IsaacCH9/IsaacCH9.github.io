@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto de Venta - Frituras</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Punto de Venta - Botanas</h1>
+        
+        <!-- Combos de productos -->
+        <div class="combo">
+            <h3>Combo 1: Papas Fritas y Salsa</h3>
+            <div class="product">Papas Fritas - $20</div>
+            <div class="product">Salsa - $5</div>
+            <button onclick="addToCart(5)">Agregar al carrito</button>
+            <img src="/img/frituras.jpg">
+        </div>
+
+        <div class="combo">
+            <h3>Combo 2: Totopos y Guacamole</h3>
+            <div class="product">Totopos - $30</div>
+            <div class="product">Guacamole - $10</div>
+            <button onclick="addToCart(40)">Agregar al carrito</button>
+            <img src="/img/totopos.jpg">
+        </div>
+
+        <div class="combo">
+            <h3>Combo 3: Nachos y Queso</h3>
+            <div class="product">Nachos - $25</div>
+            <div class="product">Queso - $10</div>
+            <button onclick="addToCart(35)">Agregar al carrito</button>
+            <img src="/img/Nachos.jpg">
+        </div>
+
+        <div class="combo">
+            <h3>Combo 4: </h3>
+            <div class="product">Fruta - $20</div>
+            <div class="product">Chamoy - $5</div>
+            <button onclick="addToCart(25)">Agregar al carrito</button>
+            <img src="/img/Fruta.jpg">
+        </div>
+
+        <!-- Total del carrito -->
+        <div class="total" id="total">Total: $0.00</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

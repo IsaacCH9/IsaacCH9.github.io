@@ -1,0 +1,104 @@
+/* Reset de estilos básicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+h1, h2 {
+    margin: 20px 0;
+}
+
+/* Sección de bienvenida */
+#bienvenida {
+    padding: 2rem;
+    text-align: center;
+    background-color: #fff;
+}
+
+/* Servicios */
+#servicios {
+    padding: 2rem;
+    background-color: #e7f7e7;
+}
+
+#servicios ul {
+    list-style-type: none;
+}
+
+#servicios ul li {
+    padding: 10px;
+    background-color: #ffffff;
+    margin: 5px 0;
+}
+
+/* Contacto */
+#contacto {
+    padding: 2rem;
+    background-color: #fff;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 5px;
+}
+
+form input, form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}

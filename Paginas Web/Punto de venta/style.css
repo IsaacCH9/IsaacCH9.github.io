@@ -1,0 +1,54 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 20px;
+}
+h1 {
+    text-align: center;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.combo {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+}
+.combo h3 {
+    margin: 0;
+}
+
+.combo img{
+    border-radius: 500px;
+    height: 25%;
+    width: 25%;
+    margin-left: 40%;
+    margin-bottom: 10%  ;
+}
+
+.product {
+    margin: 10px 0;
+}
+.total {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #218838;
+}

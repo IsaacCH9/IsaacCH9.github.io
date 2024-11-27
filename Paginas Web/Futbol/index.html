@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futbolistas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registro de Futbolistas</h1>
+        
+        <div class="form-group">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" placeholder="Ingresa el nombre del futbolista">
+        </div>
+        
+        <div class="form-group">
+            <label for="salaryAnnual">Sueldo Anual:</label>
+            <input type="text" id="salaryAnnual" placeholder="Ingresa el sueldo anual">
+        </div>
+        
+        <div class="form-group">
+            <label for="salaryMonthly">Sueldo Mensual:</label>
+            <input type="text" id="salaryMonthly" placeholder="Ingresa el sueldo mensual">
+        </div>
+        
+        <div class="form-group">
+            <label for="country">País:</label>
+            <select id="country" onchange="setClubAndContinent()">
+                <option value="México">México</option>
+                <option value="Argentina">Argentina</option>
+                <option value="España">España</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Chile">Chile</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="club">Club:</label>
+            <input type="text" id="club" value="FC Barcelona" readonly>
+        </div>
+        
+        <button class="btn" onclick="addData()">Agregar Datos</button>
+        
+        <h2>Tabla de Datos</h2>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Sueldo Anual</th>
+                    <th>Sueldo Mensual</th>
+                    <th>Club</th>
+                    <th>Continente</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <h3 id="totals"></h3>
+    </div>
+
+    <script>
+        function loadData() {
+            const storedData = JSON.parse(localStorage.getItem('futbolistas')) || [];
+            storedData.forEach(row => addRowToTable(row));
+            updateTotals(storedData);
+        }
+
+        function addData() {
+            const name = document.getElementById('name').value;
+            const salaryAnnual = parseFloat(document.getElementById('salaryAnnual').value);
+            const salaryMonthly = parseFloat(document.getElementById('salaryMonthly').value);
+            const country = document.getElementById('country').value;
+            const club = document.getElementById('club').value;
+            const continent = getContinent(country);
+
+            if (name === "" || isNaN(salaryAnnual) || isNaN(salaryMonthly)) {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+
+            const newData = [name, salaryAnnual, salaryMonthly, `<a href="https://www.fcbarcelona.es/es/futbol/primer-equipo/jugadores">${club}</a>`, continent];
+            const storedData = JSON.parse(localStorage.getItem('futbolistas')) || [];
+            storedData.push(newData);
+            localStorage.setItem('futbolistas', JSON.stringify(storedData));
+
+            addRowToTable(newData);
+            updateTotals(storedData);
+            clearFields();
+        }
+
+        function addRowToTable(row) {
+            const tableBody = document.querySelector("#dataTable tbody");
+            const tr = document.createElement('tr');
+            row.forEach(cell => {
+                const td = document.createElement('td');
+                td.innerHTML = cell;
+                tr.appendChild(td);
+            });
+            tableBody.appendChild(tr);
+        }
+
+        function updateTotals(data) {
+            let totalAnnual = 0;
+            let totalMonthly = 0;
+
+            data.forEach(row => {
+                totalAnnual += row[1];
+                totalMonthly += row[2];
+            });
+
+            document.getElementById('totals').innerHTML = `Total Sueldo Anual: $${totalAnnual.toFixed(2)}<br>Total Sueldo Mensual: $${totalMonthly.toFixed(2)}`;
+        }
+
+        function getContinent(country) {
+            const continents = {
+                "México": "América",
+                "Argentina": "América",
+                "España": "Europa",
+                "Colombia": "América",
+                "Chile": "América"
+            };
+            return continents[country] || "Desconocido";
+        }
+
+        function setClubAndContinent() {
+            document.getElementById('club').value = "FC Barcelona";
+        }
+
+        function clearFields() {
+            document.getElementById('name').value = "";
+            document.getElementById('salaryAnnual').value = "";
+            document.getElementById('salaryMonthly').value = "";
+            document.getElementById('country').value = "México";
+        }
+
+        window.onload = loadData;
+    </script>
+</body>
+</html>
